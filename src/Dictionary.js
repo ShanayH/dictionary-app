@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./Dictionary.css";
 
 export default function Dictionary() {
@@ -6,12 +7,22 @@ export default function Dictionary() {
   let [keyword, setKeyword] = useState("");
 
   // 2 make the search function
+
+  // 11 function to handleResponse, you have to use a useState again. 
+  function handleResponse(response) {
+    // 12 console log this response to check the api is working. 
+    console.log(response.data[0]);
+  }
   function Search(event) {
     event.preventDefault();
 
     //    2 you can alert("Searching"); to make sure this is working
     // 8 now you can use the keyword
+    // 9 you can use an alert to check so far that it is working
     alert(`Searching for definition of ${keyword}`);
+    // 10 use the search function to place your api inside. 
+    let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${keyword}`;
+    axios.get(apiUrl).then(handleResponse);
   }
 
   //   5 create function for the onChange
