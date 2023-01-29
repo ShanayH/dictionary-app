@@ -11,6 +11,7 @@ export default function Dictionary() {
   // 11 function to handleResponse, you have to use a useState again. 
   function handleResponse(response) {
     // 12 console log this response to check the api is working. 
+    // documentation: dictionaryapi.dev 
     console.log(response.data[0]);
   }
   function Search(event) {
