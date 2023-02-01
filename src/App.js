@@ -3,8 +3,8 @@ import Dictionary from "./Dictionary";
 
 function App() {
   return (
-    <div class="App m-5">
-      <div class="container">
+    <div className="App m-5">
+      <div className="container">
         <main>
           <Dictionary />
         </main>

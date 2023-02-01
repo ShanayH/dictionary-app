@@ -1,18 +1,24 @@
 import React, { useState } from "react";
+
 import axios from "axios";
 import "./Dictionary.css";
+import Results from "./Results.js";
 
 export default function Dictionary() {
   // 3 create useState
   let [keyword, setKeyword] = useState("");
+  // 13 useState to capture the information from response.
+  let [results, setResults] = useState(null);
 
   // 2 make the search function
 
-  // 11 function to handleResponse, you have to use a useState again. 
+  // 11 function to handleResponse, you have to use a useState again.
   function handleResponse(response) {
-    // 12 console log this response to check the api is working. 
-    // documentation: dictionaryapi.dev 
-    console.log(response.data[0]);
+    // 12 console log this response to check the api is working.
+    // documentation: dictionaryapi.dev
+    // console.log(response.data[0]);
+    // console.log(response.data[0].meanings[0].definitions[0].definition);
+    setResults(response.data[0]);
   }
   function Search(event) {
     event.preventDefault();
@@ -21,7 +27,7 @@ export default function Dictionary() {
     // 8 now you can use the keyword
     // 9 you can use an alert to check so far that it is working
     alert(`Searching for definition of ${keyword}`);
-    // 10 use the search function to place your api inside. 
+    // 10 use the search function to place your api inside.
     let apiUrl = `https://api.dictionaryapi.dev/api/v2/entries/en/${keyword}`;
     axios.get(apiUrl).then(handleResponse);
   }
@@ -49,6 +55,8 @@ export default function Dictionary() {
         />
         <input type="submit" value="Search" className="search-button" />
       </form>
+
+      <Results definition={results} />
     </div>
   );
 }
